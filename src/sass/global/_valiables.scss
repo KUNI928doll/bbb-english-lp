@@ -1,0 +1,17 @@
+// ============================================
+// 変数（カラーコード・フォント名の直書き禁止。ここに追加してから使う）
+// ============================================
+:root {
+  --black: #333;
+  --white: #fff;
+  --red: #e81919; // メインカラー（ボタン等）※デザインカンプ確認後に調整
+  --yugothic: "游ゴシック体", yugothic, "游ゴシック", "Yu Gothic", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", meiryo, sans-serif;
+}
+
+$black: var(--black);
+$white: var(--white);
+$red: var(--red);
+$yugothic: var(--yugothic);
+
+// コンテンツ幅（コーディング仕様: 860px）
+$content-width: 860;

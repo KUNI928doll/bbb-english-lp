@@ -1,0 +1,49 @@
+<head prefix="og: https://ogp.me/ns# fb: https://ogp.me/ns/fb# website: https://ogp.me/ns/website#">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,shrink-to-fit=yes" />
+  <meta name="format-detection" content="telephone=no" />
+  <!-- meta情報 -->
+  <title><%= page['title'] %></title>
+  <meta name="title" content="<%= page['title'] %>" />
+  <meta name="description" content="<%= page['description'] %>" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+
+  <!-- ファビコン関連 -->
+  <link rel="shortcut icon" href="<%= baseUrl %>/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon-precomposed" href="<%= baseUrl %>/apple-touch-icon.png" sizes="180x180" />
+  <link rel="icon" href="<%= baseUrl %>/android-chrome-256x256.png" type="image/png" sizes="256x256" />
+
+  <!-- canonical -->
+  <link rel="canonical" href="<%= page['url'] %>" />
+
+  <!-- OGP -->
+  <meta property="og:site_name" content="<%= page['title'] %>" />
+  <meta property="og:url" content="<%= page['url'] %>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="<%= page['title'] %>" />
+  <meta property="og:description" content="<%= page['description'] %>" />
+  <meta property="og:locale" content="ja" />
+  <meta property="og:image" content="<%= page['url'] %>/img/common/ogp.jpg" />
+
+  <!-- Facebook -->
+  <meta property="fb:admins" content="" />
+  <meta property="fb:app_id" content="" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <!-- <meta name="twitter:site" content="@<%= page['twitter_site'] || '' %>" /> -->
+  <!-- <meta name="twitter:creator" content="@<%= page['twitter_creator'] || '' %>" /> -->
+  <meta property="twitter:url" content="<%= page['url'] %>" />
+  <meta property="twitter:title" content="<%= page['title'] %>" />
+  <meta property="twitter:description" content="<%= page['description'] %>" />
+  <meta property="twitter:image" content="<%= page['url'] %>/img/common/ogp.jpg" />
+
+  <!-- css -->
+  <link rel="stylesheet" href="<%= baseUrl %>/assets/css/style.css" />
+  <!-- JavaScript -->
+  <script defer src="<%= baseUrl %>/assets/js/core/jquery.min.js"></script>
+  <script defer src="<%= baseUrl %>/assets/js/script.js"></script>
+</head>

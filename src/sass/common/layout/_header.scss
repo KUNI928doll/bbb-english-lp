@@ -1,0 +1,17 @@
+@use "../../global/" as *;
+
+/* ============================================
+ * header（ハンバーガーメニュー: フェードで全画面表示）
+ * ============================================ */
+.header {
+  background-color: $white;
+
+  &__inner {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-inline: auto;
+    max-width: rem($content-width);
+    padding-inline: rem(20);
+  }
+}

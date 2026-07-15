@@ -1,0 +1,15 @@
+@use "../../global/" as *;
+
+/* ============================================
+ * footer
+ * ============================================ */
+.footer {
+  background-color: $black;
+  color: $white;
+
+  &__inner {
+    margin-inline: auto;
+    max-width: rem($content-width);
+    padding-inline: rem(20);
+  }
+}

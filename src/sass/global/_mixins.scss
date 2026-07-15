@@ -1,0 +1,44 @@
+@use "sass:map";
+@use "sass:math";
+
+// ============================================
+// 基準フォントサイズ（10px）
+// ============================================
+$baseFontSize: 10;
+
+// px → rem（基準 10px）例: font-size: rem(16);
+@function rem($pixels) {
+  @return math.div($pixels, $baseFontSize) * 1rem;
+}
+
+// 相対 em 変換 例: em(8, 16)
+@function em($px, $fontSize: 16) {
+  @return math.div($px, $fontSize) * 1em;
+}
+
+// px → vw 変換 例: px-to-vw(100, 1920)
+@function px-to-vw($px, $base-vw: 1920) {
+  @return math.div($px, $base-vw) * 100vw;
+}
+
+// letter-spacing を em 換算 例: letter-spacing: lts-em(1.6, 16);
+@function lts-em($ls, $fs) {
+  @return math.div($ls, $fs) * 1em;
+}
+
+// ============================================
+// ブレークポイント（HTML / CSS / JS で統一。独自定義しない）
+// ============================================
+$breakpoints: (
+  sp: "screen and (max-width: 768px)",
+  pc: "screen and (min-width: 769px)",
+  smpc: "screen and (max-width: 1440px) and (min-width: 769px)",
+  xlpc: "screen and (min-width: 1441px)",
+);
+
+// メディアクエリ 例: @include mq(pc) { ... }
+@mixin mq($breakpoint: sp) {
+  @media #{map.get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}

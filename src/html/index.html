@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: https://ogp.me/ns# fb: https://ogp.me/ns/fb# website: https://ogp.me/ns/website#">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,shrink-to-fit=yes">
+  <meta name="format-detection" content="telephone=no">
+  <title>BBB英会話スクール</title>
+  <meta name="title" content="BBB英会話スクール">
+  <meta name="description" content="サイトの概要">
+  <!-- フォント: 游ゴシック（システムフォント）を使用。Webフォント追加時は CDN ではなくダウンロードして self-host する -->
+  <link rel="stylesheet" href="./assets/css/fv.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon-precomposed" href="./apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" href="./android-chrome-256x256.png" type="image/png" sizes="256x256">
+  <link rel="canonical" href="https://example.com/">
+  <meta property="og:title" content="BBB英会話スクール">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://example.com/assets/images/common/og-image.jpg">
+  <meta property="og:url" content="https://example.com/">
+  <meta property="og:description" content="サイトの概要">
+  <meta property="og:site_name" content="BBB英会話スクール">
+  <meta property="og:locale" content="ja">
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:url" content="https://example.com/">
+  <meta property="twitter:title" content="BBB英会話スクール">
+  <meta property="twitter:description" content="サイトの概要">
+  <meta property="twitter:image" content="https://example.com/assets/images/common/og-image.jpg">
+</head>
+
+<body>
+
+  <header class="header" id="header">
+    <div class="header__inner">
+      <h1 class="header__logo">
+        <a href="./">
+          <!-- <img src="./assets/images/common/logo.svg" alt="BBB英会話スクール" width="" height=""> -->
+        </a>
+      </h1>
+      <!-- ハンバーガーメニュー（フェードで全画面表示） -->
+      <button class="header__hamburger js-hamburger" type="button" aria-label="メニューを開く" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="header__nav js-drawer" aria-label="メインメニュー">
+        <ul class="header__nav-list">
+          <li class="header__nav-item"><a class="header__nav-link" href="#reason">BBBが選ばれる理由</a></li>
+          <li class="header__nav-item"><a class="header__nav-link" href="#voice">受講生の声</a></li>
+          <li class="header__nav-item"><a class="header__nav-link" href="#summary">スクールの概要</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- fv（メインビジュアル: 3枚フェード切替・ボタン重ね配置） -->
+  <div class="fv">
+    <!--
+    <div class="fv__slide">
+      <img src="./assets/images/pc/fv-img01.webp" alt="" width="" height="">
+    </div>
+    <a class="fv__btn btn" href="#">無料体験はこちら</a>
+    -->
+  </div>
+
+  <main id="main" class="main">
+
+    <!-- BBBが選ばれる理由（左右スライドイン） -->
+    <section id="reason" class="reason" aria-labelledby="reason-title">
+      <div class="reason__inner">
+        <h2 id="reason-title" class="reason__title">BBBが選ばれる理由</h2>
+      </div>
+    </section>
+
+    <!-- 受講生の声（ふわっと拡大表示・CSSふきだし） -->
+    <section id="voice" class="voice" aria-labelledby="voice-title">
+      <div class="voice__inner">
+        <h2 id="voice-title" class="voice__title">受講生の声</h2>
+      </div>
+    </section>
+
+    <!-- スクールの概要（ドット柄背景アニメーション） -->
+    <section id="summary" class="summary" aria-labelledby="summary-title">
+      <div class="summary__inner">
+        <h2 id="summary-title" class="summary__title">スクールの概要</h2>
+      </div>
+    </section>
+
+    <!-- cta（無料体験に申し込む: ホバーで赤枠線の白ボタン） -->
+    <section class="cta">
+      <div class="cta__inner">
+        <a class="cta__btn btn" href="#">無料体験に申し込む</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__copyright"><small>&copy; BBB English School</small></p>
+    </div>
+  </footer>
+
+  <script src="./assets/js/app/gsap.min.js"></script>
+  <script src="./assets/js/app/ScrollTrigger.min.js"></script>
+  <script src="./assets/js/fv.js"></script>
+  <script src="./assets/js/other.js"></script>
+</body>
+
+</html>
