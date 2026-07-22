@@ -12,3 +12,7 @@ sftp.json
 # SCSSソースフォルダに紛れ込むコンパイル済みCSS（ビルド出力はdistのみ）
 src/sass/**/*.css
 src/sass/**/*.css.map
+
+# 内部作業用ドキュメント（共有対象外）
+CLAUDE.md
+coding-rules-custom.md
