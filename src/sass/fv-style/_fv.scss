@@ -2,11 +2,6 @@
 
 /* ============================================
  * fv（ファーストビュー / メインビジュアル）
- * - 3枚の画像を CSS アニメーションでフェード切替（1枚あたり約6秒）
- * - 「無料体験はこちら」ボタンを重ねて配置、ホバーで少し拡大
- * - PC: 左に見出し＋ボタン、右に画像（Figma LP-PC 1400 基準）
- * - SP: 見出し→画像の縦積み
- * ※フォントサイズ・余白は Figma 箱寸法からの暫定値
  * ============================================ */
 .fv {
   position: relative;
@@ -51,14 +46,11 @@
     }
   }
 
-  /* キャッチコピーは 2 行構成: br ではなく CSS で改行 */
   &__catch-line {
     display: block;
     white-space: nowrap; // 行内で意図せず折り返さない
   }
 
-  /* トップCTAボタン（下辺の濃赤で立体感 / 右側に矢印）
-     `.btn`（style.css）より後読みされるため、`&__btn.btn` で詳細度を上げる */
   &__btn.btn {
     background-color: $red;
     border-bottom: rem(6) solid $red-dark;
@@ -79,7 +71,6 @@
       margin-top: rem(32);
     }
 
-    /* 右側に矢印（上と右のボーダーを45°回転したシェブロン） */
     &::after {
       border-right: rem(3) solid $white;
       border-top: rem(3) solid $white;
@@ -93,14 +84,12 @@
       width: rem(16);
     }
 
-    /* ホバー時: 少し拡大 + 透過 */
     &:hover {
       opacity: 0.9;
       transform: scale(1.05);
     }
   }
 
-  /* 画像エリア（3枚を重ねてクロスフェード） */
   &__images {
     aspect-ratio: 1050 / 720;
     overflow: hidden;
@@ -117,7 +106,6 @@
       z-index: 1;
     }
 
-    /* 画像の縁を白でぼかす（<img> だとブラウザが inset を描画しないため親側に被せる） */
     &::after {
       box-shadow: inset 0 0 rem(20) rem(20) $white;
       content: "";
@@ -150,7 +138,6 @@
   }
 }
 
-/* 3枚（各6秒スロット / 18秒ループ）のクロスフェード */
 @keyframes fv-fade {
   0% {
     opacity: 0;
@@ -173,7 +160,6 @@
   }
 }
 
-/* アニメーション抑制設定時は最初の1枚のみ表示 */
 @media (prefers-reduced-motion: reduce) {
   .fv__image {
     animation: none;

@@ -2,15 +2,10 @@
 
 /* ============================================
  * header
- * 白い固定バー（ロゴ左・ハンバーガー右）
- * ハンバーガー押下でフェードによる全画面メニュー表示
- * ※色・余白・寸法は Figma 回復後に要調整
  * ============================================ */
-/* メニュー展開中は背面スクロールを固定（JSで body に付与） */
 .is-drawer-open {
   overflow: hidden;
 
-  /* 赤いメニュー展開中はヘッダーの赤ロゴを隠す（メニュー内の白ロゴを見せる） */
   .header__logo {
     opacity: 0;
     visibility: hidden;
@@ -54,8 +49,6 @@
     }
   }
 
-  /* ハンバーガーボタン（赤い正方形・右上固定 / 押下で X に変形）
-     SP: 75x75 / PC: 100x100 */
   &__hamburger {
     background-color: $red;
     cursor: pointer;
@@ -126,7 +119,6 @@
     }
   }
 
-  /* 全画面メニュー（赤背景にフェードイン・白文字/白ロゴ） */
   &__nav {
     align-items: center;
     background-color: $red;
@@ -156,7 +148,6 @@
     }
   }
 
-  /* メニュー内の白ロゴ（左上に配置） */
   &__nav-logo {
     left: rem(20);
     position: absolute;
@@ -193,7 +184,6 @@
     }
   }
 
-  /* ドロワー内 CTA ボタン（枠線を右下にずらして二重線に見せるデザイン） */
   &__nav-btn {
     border: rem(1) solid $white;
     color: $white;
@@ -212,7 +202,6 @@
       width: rem(400);
     }
 
-    /* 右と下の線をずらして二重線に見せる */
     &::after {
       border-bottom: rem(1) solid $white;
       border-right: rem(1) solid $white;

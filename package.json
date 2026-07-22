@@ -10,7 +10,7 @@
     "sass:min": "sass --load-path=src/sass --style=compressed --no-source-map src/sass/style.scss:dist/assets/css/style.min.css src/sass/fv.scss:dist/assets/css/fv.min.css",
     "css": "npm run sass:expand && npm run sass:min",
     "html": "mkdir -p dist && cp src/html/index.html dist/",
-    "js": "mkdir -p dist/assets/js/app && cp src/js/fv.js dist/assets/js/fv.js && cat src/js/inview.js src/js/script.js > dist/assets/js/other.js && cp node_modules/gsap/dist/gsap.min.js node_modules/gsap/dist/ScrollTrigger.min.js dist/assets/js/app/",
+    "js": "mkdir -p dist/assets/js/app && cat src/js/inview.js src/js/script.js > dist/assets/js/other.js && cp node_modules/gsap/dist/gsap.min.js node_modules/gsap/dist/ScrollTrigger.min.js dist/assets/js/app/",
     "img": "mkdir -p dist/assets/images && rsync -a --exclude='.gitkeep' src/img/ dist/assets/images/",
     "webp": "find src/img -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \\) | while read f; do out=\"dist/assets/images/${f#src/img/}\"; out=\"${out%.*}.webp\"; mkdir -p \"$(dirname \"$out\")\"; cwebp -quiet -q 82 \"$f\" -o \"$out\"; done",
     "copy": "cp -R src/copy/. dist/ 2>/dev/null || true",

@@ -1,13 +1,12 @@
 @use "../../global/" as *;
 
 /* ============================================
- * フォント設定（本案件: 游ゴシック）
- * フォント追加時は global/_valiables.scss に変数を定義してから使う
+ * フォント設定
  * ============================================ */
 body {
   color: $black;
   font-family: $yugothic;
   font-size: rem(16);
-  letter-spacing: 0.1em; // 全体の文字間 10%
+  letter-spacing: 0.1em;
   line-height: 1.5;
 }

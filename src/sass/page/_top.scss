@@ -2,9 +2,6 @@
 
 /* ============================================
  * トップページ（LP）
- * Figma LP-PC（1400 基準）＋ SP スタックのモバイルファースト
- * ※色・フォントサイズ・余白は Figma 箱寸法からの暫定値
- *   （get_design_context 回復後に厳密値へ調整）
  * -------------------------------------------- */
 
 /* --------------------------------------------
@@ -64,10 +61,9 @@
       }
     }
 
-    /* カードは片側だけ角丸、反対側は容器の端に付ける */
     &--online {
-      border-radius: 0 rem(20) rem(20) 0; // 右側だけ角丸
-      margin-right: rem(20); // 右側に隙間、左は端に付く
+      border-radius: 0 rem(20) rem(20) 0;
+      margin-right: rem(20);
       transform: translateX(rem(-40));
 
       @include mq(pc) {
@@ -197,7 +193,6 @@
     text-align: center;
     width: rem(120);
 
-    /* アイコンの入る円形グレー背景 */
     picture {
       align-items: center;
       background-color: $gray;
@@ -209,7 +204,6 @@
       width: rem(120);
     }
 
-    /* PNG が白シルエット＋透明背景で書き出されているため、filter で見えるよう反転 */
     img {
       filter: invert(0.4);
     }
@@ -241,7 +235,6 @@
       width: 100%;
     }
 
-    /* ふきだしの三角形（SP: 上向き / PC: 左右に切替） */
     &::before {
       border-color: transparent transparent $light-blue;
       border-style: solid;
@@ -270,7 +263,6 @@
     }
   }
 
-  /* テキスト内改行: SP のみ表示 */
   &__br {
     display: none;
 
@@ -279,7 +271,6 @@
     }
   }
 
-  /* アイコン左（--left）: ふきだしの左側に矢印 */
   &__item--left &__balloon {
     &::before {
       border: rem(15) solid transparent;
@@ -291,7 +282,6 @@
     }
   }
 
-  /* アイコン右（--right）: ふきだしの右側に矢印 */
   &__item--right &__balloon {
     
 
@@ -304,7 +294,6 @@
     }
   }
 
-  /* SP: 縦積みレイアウト・ふきだしの向きを下に変える */
   @include mq(sp) {
     
 
@@ -358,9 +347,6 @@
     padding-block: rem(50);
   }
 
-  /* 流れるドット柄背景（シームレスタイルを右上→左下へループ / Codejump "fall" 参考）
-     ※ 正方形タイル(300×300)を rem(700) で表示 → キーフレームで1タイル(-700/700)分ずらして
-        45°の対角にシームレスにループ。丸はタイル内に完全に収まるので継ぎ目で切れない */
   &::before {
     animation: summary-dots 10s linear infinite;
     background: url("../images/common/bg.gif") repeat;
@@ -463,7 +449,6 @@
   }
 
   to {
-    /* 正方形タイル1枚分(-700 / +700)ずらしてシームレスにループ → 左下へ45°（Codejump "fall" 同等） */
     background-position: rem(-700) rem(700);
   }
 }
@@ -523,7 +508,6 @@
       margin-top: rem(30);
     }
 
-    /* ホバー時: 白背景・赤文字に反転（.btn ベースの opacity/scale を打ち消す） */
     &.btn:hover {
       background-color: $white;
       color: $red;
@@ -533,7 +517,6 @@
   }
 }
 
-/* アニメーション抑制設定時はスライドイン/拡大を無効化 */
 @media (prefers-reduced-motion: reduce) {
   .reason__item,
   .voice__item,
