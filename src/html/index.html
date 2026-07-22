@@ -35,61 +35,177 @@
     <div class="header__inner">
       <h1 class="header__logo">
         <a href="./">
-          <!-- <img src="./assets/images/common/logo.svg" alt="BBB英会話スクール" width="" height=""> -->
+          <img src="./assets/images/common/logo-r.svg" alt="BBB英会話スクール" width="100" height="57" decoding="async">
         </a>
       </h1>
       <!-- ハンバーガーメニュー（フェードで全画面表示） -->
-      <button class="header__hamburger js-hamburger" type="button" aria-label="メニューを開く" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
+      <button class="header__hamburger js-hamburger" type="button" aria-label="メニューを開く" aria-controls="global-nav" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
       </button>
-      <nav class="header__nav js-drawer" aria-label="メインメニュー">
+      <nav class="header__nav js-drawer" id="global-nav" aria-label="メインメニュー">
+        <img class="header__nav-logo" src="./assets/images/common/logo-w.svg" alt="BBB英会話スクール" width="120" height="68" decoding="async">
         <ul class="header__nav-list">
           <li class="header__nav-item"><a class="header__nav-link" href="#reason">BBBが選ばれる理由</a></li>
           <li class="header__nav-item"><a class="header__nav-link" href="#voice">受講生の声</a></li>
           <li class="header__nav-item"><a class="header__nav-link" href="#summary">スクールの概要</a></li>
         </ul>
+        <a class="header__nav-btn" href="#cta">無料体験はこちら</a>
       </nav>
     </div>
   </header>
 
   <!-- fv（メインビジュアル: 3枚フェード切替・ボタン重ね配置） -->
-  <div class="fv">
-    <!--
-    <div class="fv__slide">
-      <img src="./assets/images/pc/fv-img01.webp" alt="" width="" height="">
+  <section class="fv" aria-label="メインビジュアル">
+    <div class="fv__inner">
+      <div class="fv__body">
+        <p class="fv__catch"><span class="fv__catch-line">話して学ぼう！</span><span class="fv__catch-line">BBB英会話スクール</span></p>
+        <a class="fv__btn btn" href="#cta">無料体験はこちら</a>
+      </div>
+      <!-- 3枚を CSS アニメーションでフェード切替 -->
+      <div class="fv__images" aria-hidden="true">
+        <picture class="fv__image is-active">
+          <source srcset="./assets/images/pc/mainvisual1.webp" type="image/webp">
+          <img src="./assets/images/pc/mainvisual1.jpg" alt="" width="1920" height="1080" decoding="async">
+        </picture>
+        <picture class="fv__image">
+          <source srcset="./assets/images/pc/mainvisual2.webp" type="image/webp">
+          <img src="./assets/images/pc/mainvisual2.jpg" alt="" width="1920" height="1280" loading="lazy" decoding="async">
+        </picture>
+        <picture class="fv__image">
+          <source srcset="./assets/images/pc/mainvisual3.webp" type="image/webp">
+          <img src="./assets/images/pc/mainvisual3.jpg" alt="" width="1920" height="1280" loading="lazy" decoding="async">
+        </picture>
+      </div>
     </div>
-    <a class="fv__btn btn" href="#">無料体験はこちら</a>
-    -->
-  </div>
+  </section>
 
   <main id="main" class="main">
 
     <!-- BBBが選ばれる理由（左右スライドイン） -->
     <section id="reason" class="reason" aria-labelledby="reason-title">
       <div class="reason__inner">
-        <h2 id="reason-title" class="reason__title">BBBが選ばれる理由</h2>
+        <h2 id="reason-title" class="section-title reason__title">BBBが選ばれる理由</h2>
+        <div class="reason__list">
+          <div class="reason__item reason__item--online js-inview">
+            <span class="reason__icon">
+              <picture>
+                <source srcset="./assets/images/common/icon-pc.webp" type="image/webp">
+                <img src="./assets/images/common/icon-pc.png" alt="" width="174" height="120" loading="lazy" decoding="async">
+              </picture>
+            </span>
+            <div class="reason__body">
+              <p class="reason__lead">オンライン対応</p>
+              <p class="reason__sub">24時間いつでも受講できる！</p>
+            </div>
+          </div>
+          <div class="reason__item reason__item--teacher js-inview">
+            <span class="reason__icon">
+              <picture>
+                <source srcset="./assets/images/common/icon-teacher.webp" type="image/webp">
+                <img src="./assets/images/common/icon-teacher.png" alt="" width="101" height="120" loading="lazy" decoding="async">
+              </picture>
+            </span>
+            <div class="reason__body">
+              <p class="reason__lead">講師はネイティブ</p>
+              <p class="reason__sub">お気に入りの講師が自由に選べる！</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- 受講生の声（ふわっと拡大表示・CSSふきだし） -->
     <section id="voice" class="voice" aria-labelledby="voice-title">
       <div class="voice__inner">
-        <h2 id="voice-title" class="voice__title">受講生の声</h2>
+        <h2 id="voice-title" class="section-title voice__title">受講生の声</h2>
+        <ul class="voice__list">
+          <li class="voice__item voice__item--left js-inview">
+            <div class="voice__avatar">
+              <picture>
+                <source srcset="./assets/images/common/icon-student1.webp" type="image/webp">
+                <img src="./assets/images/common/icon-student1.png" alt="受講生 A さん" width="240" height="240" loading="lazy" decoding="async">
+              </picture>
+              <p class="voice__name">○○○さん</p>
+              <p class="voice__role">大学生</p>
+            </div>
+            <div class="voice__balloon">
+              <p class="voice__text">テキストテキストテキストテキストテキストテキストテキストテキストテキスト<br class="voice__br" aria-hidden="true">テキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            </div>
+          </li>
+          <li class="voice__item voice__item--right js-inview">
+            <div class="voice__avatar">
+              <picture>
+                <source srcset="./assets/images/common/icon-student2.webp" type="image/webp">
+                <img src="./assets/images/common/icon-student2.png" alt="受講生 B さん" width="240" height="240" loading="lazy" decoding="async">
+              </picture>
+              <p class="voice__name">○○○さん</p>
+              <p class="voice__role">会社員</p>
+            </div>
+            <div class="voice__balloon">
+              <p class="voice__text">テキストテキストテキストテキストテキストテキストテキストテキストテキスト<br class="voice__br" aria-hidden="true">テキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            </div>
+          </li>
+          <li class="voice__item voice__item--left js-inview">
+            <div class="voice__avatar">
+              <picture>
+                <source srcset="./assets/images/common/icon-student3.webp" type="image/webp">
+                <img src="./assets/images/common/icon-student3.png" alt="受講生 C さん" width="240" height="240" loading="lazy" decoding="async">
+              </picture>
+              <p class="voice__name">○○○さん</p>
+              <p class="voice__role">主婦</p>
+            </div>
+            <div class="voice__balloon">
+              <p class="voice__text">テキストテキストテキストテキストテキストテキストテキストテキストテキスト<br class="voice__br" aria-hidden="true">テキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            </div>
+          </li>
+        </ul>
       </div>
     </section>
 
     <!-- スクールの概要（ドット柄背景アニメーション） -->
     <section id="summary" class="summary" aria-labelledby="summary-title">
       <div class="summary__inner">
-        <h2 id="summary-title" class="summary__title">スクールの概要</h2>
+        <h2 id="summary-title" class="section-title summary__title">スクールの概要</h2>
+        <div class="summary__list">
+          <article class="summary__card js-inview">
+            <h3 class="summary__card-title">
+              レッスン内容
+              <span class="summary__card-en">LESSON</span>
+            </h3>
+            <p class="summary__card-text">テキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </article>
+          <article class="summary__card js-inview">
+            <h3 class="summary__card-title">
+              料金プラン
+              <span class="summary__card-en">PRICE</span>
+            </h3>
+            <p class="summary__card-text">テキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </article>
+          <article class="summary__card js-inview">
+            <h3 class="summary__card-title">
+              講師のご紹介
+              <span class="summary__card-en">TEACHER</span>
+            </h3>
+            <p class="summary__card-text">テキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </article>
+          <article class="summary__card js-inview">
+            <h3 class="summary__card-title">
+              BBBのQ&amp;A
+              <span class="summary__card-en">Q&amp;A</span>
+            </h3>
+            <p class="summary__card-text">テキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </article>
+        </div>
       </div>
     </section>
 
     <!-- cta（無料体験に申し込む: ホバーで赤枠線の白ボタン） -->
-    <section class="cta">
+    <section id="cta" class="cta">
       <div class="cta__inner">
+        <p class="cta__lead">まずは無料で、BBBの英会話を試してみませんか？</p>
+        <p class="cta__text">今なら初月のレッスンを特別価格で受講できる割引クーポンをプレゼント！</p>
         <a class="cta__btn btn" href="#">無料体験に申し込む</a>
       </div>
     </section>
@@ -98,6 +214,42 @@
 
   <footer class="footer">
     <div class="footer__inner">
+      <nav class="footer__nav" aria-label="フッターメニュー">
+        <div class="footer__col">
+          <p class="footer__heading">コース一覧</p>
+          <ul class="footer__list">
+            <li><a href="#">スタンダードプラン</a></li>
+            <li><a href="#">プレミアムプラン</a></li>
+            <li><a href="#">短期集中プラン</a></li>
+            <li><a href="#">日常英会話コース</a></li>
+            <li><a href="#">ビジネス英会話コース</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <p class="footer__heading">講師紹介</p>
+          <ul class="footer__list">
+            <li><a href="#">講師について</a></li>
+            <li><a href="#">講師一覧</a></li>
+            <li><a href="#">講師を探す</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <p class="footer__heading">会社情報</p>
+          <ul class="footer__list">
+            <li><a href="#">会社概要</a></li>
+            <li><a href="#">採用情報</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <p class="footer__heading">BBBについて</p>
+          <ul class="footer__list">
+            <li><a href="#">よくあるご質問</a></li>
+            <li><a href="#">ご利用規約</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </nav>
       <p class="footer__copyright"><small>&copy; BBB English School</small></p>
     </div>
   </footer>

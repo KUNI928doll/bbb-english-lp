@@ -8,5 +8,6 @@ body {
   color: $black;
   font-family: $yugothic;
   font-size: rem(16);
+  letter-spacing: 0.1em; // 全体の文字間 10%
   line-height: 1.5;
 }

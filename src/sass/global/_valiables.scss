@@ -1,16 +1,25 @@
 // ============================================
 // 変数（カラーコード・フォント名の直書き禁止。ここに追加してから使う）
+// カラーはクライアント指定の公式5色のみ
 // ============================================
 :root {
-  --black: #333;
+  --red: #ff2a2a; // メインカラー（ボタン・アクセント）
+  --red-dark: #9a0413; // 濃赤（ボタン下辺の影）
+  --black: #333; // フォント色（#333333）
+  --gray: #e8e8e8; // 背景グレー（summary の地色など）
+  --light-blue: #e9f1fb; // 淡い青（reason の帯など）
   --white: #fff;
-  --red: #e81919; // メインカラー（ボタン等）※デザインカンプ確認後に調整
+  --shadow: rgba(0, 0, 0, 0.08); // カードの影など
   --yugothic: "游ゴシック体", yugothic, "游ゴシック", "Yu Gothic", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", meiryo, sans-serif;
 }
 
-$black: var(--black);
-$white: var(--white);
 $red: var(--red);
+$red-dark: var(--red-dark);
+$black: var(--black);
+$gray: var(--gray);
+$light-blue: var(--light-blue);
+$white: var(--white);
+$shadow: var(--shadow);
 $yugothic: var(--yugothic);
 
 // コンテンツ幅（コーディング仕様: 860px）

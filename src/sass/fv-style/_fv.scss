@@ -2,21 +2,184 @@
 
 /* ============================================
  * fv（ファーストビュー / メインビジュアル）
- * - 3枚の画像を CSS アニメーションでフェード切替（5〜7秒）
- * - 「無料体験はこちら」ボタンを画像に重ねて配置、ホバーで少し拡大
+ * - 3枚の画像を CSS アニメーションでフェード切替（1枚あたり約6秒）
+ * - 「無料体験はこちら」ボタンを重ねて配置、ホバーで少し拡大
+ * - PC: 左に見出し＋ボタン、右に画像（Figma LP-PC 1400 基準）
+ * - SP: 見出し→画像の縦積み
+ * ※フォントサイズ・余白は Figma 箱寸法からの暫定値
  * ============================================ */
 .fv {
   position: relative;
 
-  &__slide {
+  &__inner {
+    display: flex;
+    flex-direction: column-reverse; // SP: DOM は body→images だが視覚は images→body
+    margin-inline: auto;
+
+    @include mq(pc) {
+      display: block;
+      max-width: rem(1400);
+      min-height: rem(820);
+      position: relative;
+    }
   }
 
-  &__btn {
-    position: absolute;
-    transition: transform 0.3s;
+  &__body {
+    padding: rem(70) rem(20);
 
+    @include mq(pc) {
+      left: rem(120);
+      padding: 0;
+      position: absolute;
+      text-align: left;
+      top: rem(390);
+      width: rem(464);
+      z-index: 2;
+    }
+  }
+
+  &__catch {
+    font-family: Arial, $yugothic;
+    font-size: rem(28);
+    font-weight: bold;
+    letter-spacing: 0.1em; // 10%
+    line-height: 1.6;
+    text-shadow: 0 rem(4) rem(6) $white;
+
+    @include mq(pc) {
+      font-size: rem(46);
+    }
+  }
+
+  /* キャッチコピーは 2 行構成: br ではなく CSS で改行 */
+  &__catch-line {
+    display: block;
+    white-space: nowrap; // 行内で意図せず折り返さない
+  }
+
+  /* トップCTAボタン（下辺の濃赤で立体感 / 右側に矢印）
+     `.btn`（style.css）より後読みされるため、`&__btn.btn` で詳細度を上げる */
+  &__btn.btn {
+    background-color: $red;
+    border-bottom: rem(6) solid $red-dark;
+    border-radius: rem(10);
+    color: $white;
+    display: block;
+    font-size: rem(24);
+    letter-spacing: lts-em(3, 24);
+    margin-top: rem(12);
+    padding: rem(11) rem(35);
+    position: relative;
+    text-align: center;
+    transition: 0.3s;
+
+
+
+    @include mq(pc) {
+      margin-top: rem(32);
+    }
+
+    /* 右側に矢印（上と右のボーダーを45°回転したシェブロン） */
+    &::after {
+      border-right: rem(3) solid $white;
+      border-top: rem(3) solid $white;
+      content: "";
+      height: rem(16);
+      margin-top: rem(-3); // 下辺 border 6px 分を差し引いて視覚中央に合わせる
+      position: absolute;
+      right: rem(30);
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      width: rem(16);
+    }
+
+    /* ホバー時: 少し拡大 + 透過 */
     &:hover {
+      opacity: 0.9;
       transform: scale(1.05);
+    }
+  }
+
+  /* 画像エリア（3枚を重ねてクロスフェード） */
+  &__images {
+    aspect-ratio: 1050 / 720;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    @include mq(pc) {
+      aspect-ratio: auto;
+      height: rem(720);
+      position: absolute;
+      right: 0;
+      top: rem(100);
+      width: rem(1050);
+      z-index: 1;
+    }
+
+    /* 画像の縁を白でぼかす（<img> だとブラウザが inset を描画しないため親側に被せる） */
+    &::after {
+      box-shadow: inset 0 0 rem(20) rem(20) $white;
+      content: "";
+      inset: 0;
+      pointer-events: none;
+      position: absolute;
+      z-index: 2;
+    }
+  }
+
+  &__image {
+    animation: fv-fade 18s infinite;
+    inset: 0;
+    opacity: 0;
+    position: absolute;
+
+    &:nth-of-type(2) {
+      animation-delay: 6s;
+    }
+
+    &:nth-of-type(3) {
+      animation-delay: 12s;
+    }
+
+    img {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+}
+
+/* 3枚（各6秒スロット / 18秒ループ）のクロスフェード */
+@keyframes fv-fade {
+  0% {
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  33% {
+    opacity: 1;
+  }
+
+  41% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* アニメーション抑制設定時は最初の1枚のみ表示 */
+@media (prefers-reduced-motion: reduce) {
+  .fv__image {
+    animation: none;
+
+    &.is-active {
+      opacity: 1;
     }
   }
 }

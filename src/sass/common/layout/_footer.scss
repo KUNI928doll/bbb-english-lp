@@ -2,14 +2,77 @@
 
 /* ============================================
  * footer
+ * 濃色背景・ナビ4列＋コピーライト（Figma LP-PC 1400 基準）
+ * ※フォントサイズ・余白は Figma 箱寸法からの暫定値
  * ============================================ */
 .footer {
-  background-color: $black;
-  color: $white;
+  background-color: $gray;
+  color: $black;
+  padding-bottom: rem(20);
+  padding-top: rem(50);
+
+  @include mq(pc) {
+    padding-bottom: rem(20);
+    padding-top: rem(60);
+  }
 
   &__inner {
     margin-inline: auto;
     max-width: rem($content-width);
-    padding-inline: rem(20);
+    padding-inline: rem(16);
+    @include mq(pc) {
+      padding-inline: rem(0);
+    }
+  }
+
+  &__nav {
+    display: grid;
+    gap: rem(32) rem(5);
+    grid-template-columns: repeat(2, 1fr);
+
+    @include mq(pc) {
+      display: flex;
+      flex-wrap: nowrap;
+      grid-template-columns: none;
+      justify-content: space-between;
+    }
+  }
+
+  &__heading {
+    font-size: rem(16);
+    font-weight: bold;
+  }
+
+  &__col {
+    @include mq(pc) {
+      width: 25%;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: rem(4);
+    line-height: 0.9;
+    padding-left: rem(10);
+
+    a {
+      font-size: rem(12);
+      transition: opacity 0.3s;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  &__copyright {
+    font-size: rem(11);
+    margin-top: rem(56);
+    text-align: center;
+
+    @include mq(pc) {
+      margin-top: rem(80);
+    }
   }
 }

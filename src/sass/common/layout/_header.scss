@@ -1,17 +1,237 @@
 @use "../../global/" as *;
 
 /* ============================================
- * header（ハンバーガーメニュー: フェードで全画面表示）
+ * header
+ * 白い固定バー（ロゴ左・ハンバーガー右）
+ * ハンバーガー押下でフェードによる全画面メニュー表示
+ * ※色・余白・寸法は Figma 回復後に要調整
  * ============================================ */
+/* メニュー展開中は背面スクロールを固定（JSで body に付与） */
+.is-drawer-open {
+  overflow: hidden;
+
+  /* 赤いメニュー展開中はヘッダーの赤ロゴを隠す（メニュー内の白ロゴを見せる） */
+  .header__logo {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 .header {
   background-color: $white;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
 
   &__inner {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    margin-inline: auto;
-    max-width: rem($content-width);
-    padding-inline: rem(20);
+    min-height: rem(64);
+    padding-inline: rem(25);
+
+    @include mq(pc) {
+      min-height: rem(100);
+      padding-inline: rem(50);
+    }
+  }
+
+  &__logo {
+    line-height: 0;
+    margin-top: rem(25);
+    position: relative;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 120; // 全画面メニューより前面に残す
+
+    @include mq(pc) {
+      margin-top: rem(40);
+    }
+
+    img {
+      width: rem(100);
+    }
+  }
+
+  /* ハンバーガーボタン（赤い正方形・右上固定 / 押下で X に変形）
+     SP: 75x75 / PC: 100x100 */
+  &__hamburger {
+    background-color: $red;
+    cursor: pointer;
+    height: rem(75);
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: 0.3s;
+    width: rem(75);
+    z-index: 30;
+
+    @include mq(pc) {
+      height: rem(100);
+      width: rem(100);
+    }
+
+    span {
+      background-color: $white;
+      display: block;
+      height: rem(2);
+      left: 50%;
+      position: absolute;
+      transition: transform 0.3s, opacity 0.3s;
+      width: rem(35);
+
+      @include mq(pc) {
+        width: rem(40);
+      }
+
+      &:nth-child(1) {
+        top: rem(25);
+        transform: translateX(-50%);
+
+        @include mq(pc) {
+          top: rem(35);
+        }
+      }
+
+      &:nth-child(2) {
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      &:nth-child(3) {
+        bottom: rem(25);
+        transform: translateX(-50%);
+
+        @include mq(pc) {
+          bottom: rem(35);
+        }
+      }
+    }
+
+    &.is-active span {
+      &:nth-child(1) {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        bottom: 50%;
+        transform: translate(-50%, 50%) rotate(-45deg);
+      }
+    }
+  }
+
+  /* 全画面メニュー（赤背景にフェードイン・白文字/白ロゴ） */
+  &__nav {
+    align-items: center;
+    background-color: $red;
+    color: $white;
+    display: flex;
+    flex-direction: column;
+    gap: rem(40);
+    height: 100vh;
+    justify-content: flex-start;
+    padding-top: rem(110); // ロゴ下から始まる位置に
+
+    @include mq(pc) {
+      padding-top: rem(180);
+    }
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    transition: opacity 0.4s, visibility 0.4s;
+    visibility: hidden;
+    width: 100%;
+    z-index: 20; // ハンバーガー(z:30)より下
+
+    &.is-active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  /* メニュー内の白ロゴ（左上に配置） */
+  &__nav-logo {
+    left: rem(20);
+    position: absolute;
+    top: rem(20);
+    width: rem(100);
+
+    @include mq(pc) {
+      left: rem(50);
+      top: rem(28);
+      width: rem(120);
+    }
+  }
+
+  &__nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+    text-align: center;
+  }
+
+  &__nav-link {
+    display: inline-block;
+    font-size: rem(16);
+    letter-spacing: lts-em(1.6, 20);
+    transition: opacity 0.3s;
+    font-weight: bold;
+
+    @include mq(pc) {
+      font-size: rem(32);
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  /* ドロワー内 CTA ボタン（枠線を右下にずらして二重線に見せるデザイン） */
+  &__nav-btn {
+    border: rem(1) solid $white;
+    color: $white;
+    display: block;
+    font-weight: bold;
+    margin: 0 auto;
+    padding: rem(15) 0;
+    position: relative;
+    text-align: center;
+    transition: 0.3s ease-in-out;
+    width: rem(250);
+
+    @include mq(pc) {
+      font-size: rem(24);
+      padding: rem(24) 0;
+      width: rem(400);
+    }
+
+    /* 右と下の線をずらして二重線に見せる */
+    &::after {
+      border-bottom: rem(1) solid $white;
+      border-right: rem(1) solid $white;
+      bottom: rem(-6);
+      content: "";
+      padding: rem(15) 0;
+      position: absolute;
+      right: rem(-6);
+      width: rem(250);
+
+      @include mq(pc) {
+        padding: rem(24) 0;
+        width: rem(400);
+      }
+    }
+
+    &:hover {
+      background-color: $white;
+      color: $red;
+    }
   }
 }

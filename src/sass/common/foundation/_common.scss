@@ -19,3 +19,24 @@ html {
     font-size: 62.5%;
   }
 }
+
+/* スムーズスクロール（アニメーション抑制設定時は無効化） */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ============================================
+ * SP のみ header 分＋19px の余白を確保（画像が header に隠れないようにする）
+ * SP: header 64 + 19 = 83 / PC: 0（header は FV に被って良い）
+ * ＋ sticky footer: コンテンツが少なくても footer がビューポート下端に張り付く
+ * ============================================ */
+body {
+  padding-top: rem(82);
+
+  @include mq(pc) {
+    padding-top: 0;
+  }
+}
+

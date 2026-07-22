@@ -9,13 +9,13 @@
   border: rem(2) solid $red;
   color: $white;
   display: inline-block;
-  font-size: rem(16);
+  font-size: rem(24);
   padding: rem(14) rem(40);
   text-align: center;
-  transition: background-color 0.3s, color 0.3s;
+  transition: opacity 0.3s, transform 0.3s;
 
   &:hover {
-    background-color: $white;
-    color: $red;
+    opacity: 0.9;
+    transform: scale(1.05);
   }
 }

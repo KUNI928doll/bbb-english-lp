@@ -12,12 +12,14 @@ Codejump 応用編：英会話スクールBBBのランディングページ（CS
 
 ## ビルド環境
 
-- Gulp（`~/gulp-templates/latest` ベース）/ システム Node 24 で動作確認済み
-- `npm run dev` — 開発サーバー（browser-sync）＋ watch
-- `npm run build` — 本番ビルド
-- SCSS: `src/sass/` → `dist/assets/css/`（style.css / style.min.css / fv.css / fv.min.css を出力）
-- HTML: `src/html/` → `dist/`
-- JS: `src/js/fv.js` → `dist/assets/js/fv.js`（単体）、その他 `src/js/*.js` は結合して `dist/assets/js/other.js`
-- 画像: `src/img/`（common / pc / sp）→ `dist/assets/images/`
-- ライブラリ: Splide.js・GSAP は node_modules から `dist/assets/js/app/` へコピーされる
+Gulp は使わない（クライアント独自ルールに合わせて撤去済み）。素の npm scripts + sass CLI で回す。
+
+- `npm run build` — 本番ビルド一発（clean → css → html → js → img → webp → copy）
+- `npm run dev` — build 後、`sass --watch` と `browser-sync` を `concurrently` で並列起動（http://localhost:3000）
+- SCSS: `sass` CLI で `src/sass/style.scss` / `src/sass/fv.scss` → `dist/assets/css/*.{css,min.css}`（style.css / style.min.css / fv.css / fv.min.css）
+- HTML: `cp src/html/index.html dist/`
+- JS: `src/js/fv.js` → `dist/assets/js/fv.js`（単体）、`src/js/inview.js` + `src/js/script.js` を `cat` で結合し `dist/assets/js/other.js`
+- 画像: `rsync -a src/img/ dist/assets/images/`（`.gitkeep` は除外）
+- WebP: `cwebp -q 82` で `.jpg/.jpeg/.png` から `.webp` を生成
+- ライブラリ: GSAP・ScrollTrigger は `node_modules/gsap/dist/*.min.js` を `dist/assets/js/app/` に `cp`
 - 納品時は SCSS ソースも `assets/scss/` として同梱する（全体ガイドライン参照）

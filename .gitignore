@@ -1,3 +1,4 @@
+
 node_modules/
 dist
 
@@ -7,3 +8,7 @@ server*.json*
 sftp.json
 .VSCodeCounter
 .DS_Store
+
+# SCSSソースフォルダに紛れ込むコンパイル済みCSS（ビルド出力はdistのみ）
+src/sass/**/*.css
+src/sass/**/*.css.map
