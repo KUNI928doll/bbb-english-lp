@@ -4,7 +4,7 @@
  * section-title（共通見出し）
  * ============================================ */
 .section-title {
-  font-size: rem(28);
+  font-size: fz(28);
   font-weight: bold;
   letter-spacing: lts-em(2, 28);
   padding-bottom: rem(18);
@@ -12,7 +12,7 @@
   text-align: center;
 
   @include mq(pc) {
-    font-size: rem(36);
+    font-size: fz(36);
     letter-spacing: lts-em(2.4, 36);
   }
 

@@ -35,14 +35,14 @@
 
   &__catch {
     font-family: Arial, $yugothic;
-    font-size: rem(28);
+    font-size: fz(28);
     font-weight: bold;
     letter-spacing: 0.1em; // 10%
     line-height: 1.6;
     text-shadow: 0 rem(4) rem(6) $white;
 
     @include mq(pc) {
-      font-size: rem(46);
+      font-size: fz(46);
     }
   }
 
@@ -57,7 +57,7 @@
     border-radius: rem(10);
     color: $white;
     display: block;
-    font-size: rem(24);
+    font-size: fz(24);
     letter-spacing: lts-em(3, 24);
     margin-top: rem(12);
     padding: rem(11) rem(35);

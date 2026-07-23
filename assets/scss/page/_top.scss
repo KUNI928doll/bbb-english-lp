@@ -67,7 +67,8 @@
       transform: translateX(rem(-40));
 
       @include mq(pc) {
-        left: 0;
+        // xlpc ではデザイン幅（1440px）で中央寄せ。1440px 以下は 0（＝従来どおり端まで）
+        left: max(0px, calc((100% - #{rem($design-width)}) / 2));
         margin-right: 0;
         top: rem(80);
         transform: translateX(rem(-80));
@@ -82,7 +83,8 @@
       @include mq(pc) {
         margin-left: 0;
         padding-left: rem(132);
-        right: 0;
+        // xlpc ではデザイン幅（1440px）で中央寄せ。1440px 以下は 0（＝従来どおり端まで）
+        right: max(0px, calc((100% - #{rem($design-width)}) / 2));
         top: rem(330);
         transform: translateX(rem(80));
       }
@@ -107,17 +109,17 @@
 
   &__lead {
     color: $red;
-    font-size: rem(24);
+    font-size: fz(24);
     font-weight: bold;
     letter-spacing: lts-em(2.4, 24); // 10% (= 0.1em)
 
     @include mq(pc) {
-      font-size: rem(28);
+      font-size: fz(28);
     }
   }
 
   &__sub {
-    font-size: rem(18);
+    font-size: fz(18);
     letter-spacing: lts-em(1.8, 18); // 10% (= 0.1em)
     line-height: 1.33; // 24/18
   }
@@ -136,7 +138,7 @@
 
   &__inner {
     margin-inline: auto;
-    max-width: rem($content-width);
+    max-width: content-max($content-width);
     padding-inline: rem(16);
 
     @include mq(pc) {
@@ -217,7 +219,7 @@
   }
 
   &__role {
-    font-size: rem(12);
+    font-size: fz(12);
     letter-spacing: lts-em(1.2, 12); // 10% (= 0.1em)
     margin-top: rem(2);
   }
@@ -254,12 +256,12 @@
   }
 
   &__text {
-    font-size: rem(16);
+    font-size: fz(16);
     letter-spacing: lts-em(1.6, 16); // 10% (= 0.1em)
     line-height: 1.4;
 
     @include mq(pc) {
-      font-size: rem(18);
+      font-size: fz(18);
     }
   }
 
@@ -359,13 +361,13 @@
 
   &__inner {
     margin-inline: auto;
-    max-width: rem($content-width);
+    max-width: content-max($content-width);
     padding-inline: rem(20);
     position: relative;
     z-index: 1;
 
     @include mq(pc) {
-      max-width: rem(900); // 410px × 2枚 + gap 40 + padding 40
+      max-width: content-max(900); // 410px × 2枚 + gap 40 + padding 40
     }
   }
 
@@ -409,36 +411,36 @@
   }
 
   &__card-title {
-    font-size: rem(24);
+    font-size: fz(24);
     font-weight: bold;
     letter-spacing: lts-em(2, 20);
     @include mq(pc) {
-      font-size:  rem(28);
+      font-size:  fz(28);
     }
   }
 
   &__card-en {
     color: $black;
     display: block;
-    font-size: rem(16);
+    font-size: fz(16);
     letter-spacing: lts-em(1.5, 13);
     font-weight: bold;
 
     @include mq(pc) {
-      font-size:  rem(18);
+      font-size:  fz(18);
     }
     
   }
 
   &__card-text {
-    font-size: rem(14);
+    font-size: fz(14);
     line-height: 1.8;
     margin-top: rem(30);
     text-align: left;
 
     @include mq(pc) {
       margin-top: rem(32);
-      font-size: rem(16);
+      font-size: fz(16);
     }
   }
 }
@@ -465,7 +467,7 @@
 
   &__inner {
     margin-inline: auto;
-    max-width: rem($content-width);
+    max-width: content-max($content-width);
     padding-inline: rem(14);
     text-align: center;
 
@@ -475,20 +477,20 @@
   }
 
   &__lead {
-    font-size: rem(24);
+    font-size: fz(24);
     font-weight: bold;
 
     @include mq(pc) {
-      font-size: rem(32);
+      font-size: fz(32);
     }
   }
 
   &__text {
-    font-size: rem(14);
+    font-size: fz(14);
     margin-top: rem(5);
 
     @include mq(pc) {
-      font-size: rem(18);
+      font-size: fz(18);
       margin-top: rem(0);
     }
   }
@@ -496,7 +498,7 @@
   &__btn {
     border-radius: rem(40);
     display: block;
-    font-size: rem(24);
+    font-size: fz(24);
     line-height: 1.17; // 28/24
     margin-top: rem(38);
     transition: background-color 0.3s, color 0.3s;
@@ -504,7 +506,7 @@
     font-weight: bold;
 
     @include mq(pc) {
-      font-size: rem(28);
+      font-size: fz(28);
       margin-top: rem(30);
     }
 

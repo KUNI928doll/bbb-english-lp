@@ -26,6 +26,21 @@ $baseFontSize: 10;
   @return math.div($ls, $fs) * 1em;
 }
 
+// コンテンツ幅：px を下限にして smpc 域（769〜1440px）で vw 連動により
+// 縮みすぎるのを防ぐ。max(設計px, rem) で下限は px、大画面では rem 側が効く。
+// font を px 止めする要素があるとき、幅が縮むと可読性・レイアウトが崩れるため。
+// 例: max-width: content-max($content-width);
+@function content-max($px) {
+  @return max($px * 1px, rem($px));
+}
+
+// font-size の最小値を px で固定（縮小時の可読性を確保）。
+// 設計 12px 以上の font に使用。12px 未満（10/11px 等）はそのまま rem() を使う。
+// 例: font-size: fz(16);  →  max(rem(16), 12px)
+@function fz($px, $min: 12) {
+  @return max(rem($px), $min * 1px);
+}
+
 // ============================================
 // ブレークポイント（HTML / CSS / JS で統一。独自定義しない）
 // ============================================

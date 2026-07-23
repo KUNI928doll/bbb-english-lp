@@ -22,3 +22,7 @@ $shadow: var(--shadow);
 $yugothic: var(--yugothic);
 
 $content-width: 860;
+
+// デザイン基準幅（smpc の vw 基準・ブレークポイント基準と一致）。
+// xlpc（1441px〜）で端寄せ要素をこの幅に中央寄せし、広い画面でのデザイン再現性を保つ。
+$design-width: 1440;

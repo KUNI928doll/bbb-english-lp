@@ -170,13 +170,13 @@
 
   &__nav-link {
     display: inline-block;
-    font-size: rem(16);
+    font-size: fz(16);
     letter-spacing: lts-em(1.6, 20);
     transition: opacity 0.3s;
     font-weight: bold;
 
     @include mq(pc) {
-      font-size: rem(32);
+      font-size: fz(32);
     }
 
     &:hover {
@@ -197,7 +197,7 @@
     width: rem(250);
 
     @include mq(pc) {
-      font-size: rem(24);
+      font-size: fz(24);
       padding: rem(24) 0;
       width: rem(400);
     }

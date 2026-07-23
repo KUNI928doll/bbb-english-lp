@@ -16,7 +16,7 @@
 
   &__inner {
     margin-inline: auto;
-    max-width: rem($content-width);
+    max-width: content-max($content-width);
     padding-inline: rem(16);
     @include mq(pc) {
       padding-inline: rem(0);
@@ -37,7 +37,7 @@
   }
 
   &__heading {
-    font-size: rem(16);
+    font-size: fz(16);
     font-weight: bold;
   }
 
@@ -55,7 +55,7 @@
     padding-left: rem(10);
 
     a {
-      font-size: rem(12);
+      font-size: fz(12);
       transition: opacity 0.3s;
 
       &:hover {
