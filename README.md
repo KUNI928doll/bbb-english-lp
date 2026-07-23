@@ -1,66 +1,83 @@
 # BBB 英会話スクール LP
 
-英会話スクール BBB のランディングページ。素の HTML / SCSS / JavaScript で構築（Gulp・WordPress 不使用）。
+英会話スクール BBB のランディングページ。素の HTML / SCSS / JavaScript で構築。
+**Node.js は不使用**（npm / Gulp / バンドラーなし）。ルート直下がそのまま公開・納品物です。
 
 ## 動作環境
 
-- Node.js 18 以上（開発時は 24.x で確認）
-- npm 9 以上
-- macOS / Linux 想定（`rsync` / `cwebp` を利用）
-- WebP 生成には `cwebp` が必要（macOS: `brew install webp`）
+- SCSS コンパイラ（どちらか）
+  - **Live Sass Compile**（VS Code 拡張・GUI）
+  - **dart-sass**（スタンドアロン CLI。macOS: `brew install sass`）
+- WebP を再生成する場合のみ `cwebp`（macOS: `brew install webp`）
+
+> `npm install` は不要です。GSAP などのライブラリは `assets/js/app/` に静的同梱済み。
 
 ## セットアップ
 
+クローンして VS Code で開くだけ。ビルド工程はありません。
+静的サイトなので `index.html` をブラウザで直接開くか、任意の静的サーバー（例: VS Code の Live Server 拡張、`python3 -m http.server`）で配信します。
+
+## SCSS のコンパイル
+
+### 方法 A: Live Sass Compile（推奨・GUI）
+
+1. VS Code 拡張「Live Sass Compiler」をインストール
+2. リポジトリを開く（`.vscode/settings.json` に出力設定を同梱済み）
+3. ステータスバーの **Watch Sass** をクリック
+
+`assets/scss/style.scss` / `fv.scss` を編集・保存すると、`assets/css/` に
+`style.css` / `style.min.css` / `fv.css` / `fv.min.css` が自動出力されます。
+
+### 方法 B: dart-sass CLI（手動）
+
 ```bash
-npm install
+# 展開版
+sass --load-path=assets/scss --style=expanded --no-source-map \
+  assets/scss/style.scss:assets/css/style.css \
+  assets/scss/fv.scss:assets/css/fv.css
+
+# 圧縮版
+sass --load-path=assets/scss --style=compressed --no-source-map \
+  assets/scss/style.scss:assets/css/style.min.css \
+  assets/scss/fv.scss:assets/css/fv.min.css
 ```
 
-## 開発
+監視する場合は `--watch` を付与します。
+
+## WebP の再生成（任意）
+
+画像を差し替えたときのみ。`cwebp`（非 Node）で `.jpg` / `.png` から生成します。
 
 ```bash
-npm run dev
+cd assets/images
+find . -type f \( -iname '*.jpg' -o -iname '*.png' \) \
+  | while read f; do cwebp -quiet -q 82 "$f" -o "${f%.*}.webp"; done
 ```
-
-- `http://localhost:3000` で開発サーバー起動
-- SCSS / HTML / JS / 画像の変更を監視し、`dist/` に自動出力 & ブラウザリロード
-
-## 本番ビルド
-
-```bash
-npm run build
-```
-
-`dist/` に納品用ファイル一式が生成されます。
 
 ## ディレクトリ構成
 
 ```
-src/
-├── html/
-│   └── index.html          # メインの HTML
-├── sass/
-│   ├── global/             # 変数・関数・mixin
-│   ├── common/             # 全ページ共通
-│   │   ├── foundation/     # リセット・ベース・フォント
-│   │   ├── layout/         # ヘッダー・フッター
-│   │   └── conpornent/     # 再利用 UI パーツ
-│   ├── page/               # ページ固有スタイル
-│   ├── fv-style/           # FV 専用スタイル
-│   ├── style.scss          # メインエントリー
-│   └── fv.scss             # FV 専用エントリー
-├── js/
-│   ├── fv.js               # FV アニメーション
-│   ├── inview.js           # スクロール連動（IntersectionObserver）
-│   └── script.js           # ドロワーメニュー等
-├── img/                    # 画像ソース（PNG / JPG / SVG）
-└── copy/                   # dist 直下へコピーするファイル（favicon 等）
-
-dist/                       # ビルド出力
+/  （ルート直下がそのまま納品物）
 ├── index.html
+├── favicon.ico / apple-touch-icon.png / android-chrome-256x256.png
+├── .vscode/
+│   └── settings.json          # Live Sass Compile 設定
 └── assets/
-    ├── css/                # style.css / style.min.css / fv.css / fv.min.css
-    ├── js/                 # fv.js / other.js / app/gsap.min.js 等
-    └── images/             # WebP フォールバック付きで書き出し
+    ├── scss/                  # SCSS ソース
+    │   ├── global/            # 変数・関数・mixin
+    │   ├── common/            # 全ページ共通
+    │   │   ├── foundation/    # リセット・ベース・フォント
+    │   │   ├── layout/        # ヘッダー・フッター
+    │   │   └── conpornent/    # 再利用 UI パーツ
+    │   ├── page/              # ページ固有スタイル
+    │   ├── fv-style/          # FV 専用スタイル
+    │   ├── style.scss         # メインエントリー
+    │   └── fv.scss            # FV 専用エントリー
+    ├── css/                   # コンパイル出力（style.css / style.min.css / fv.css / fv.min.css）
+    ├── js/
+    │   ├── other.js           # inview（IntersectionObserver）＋ ドロワー等を統合
+    │   └── app/               # gsap.min.js / ScrollTrigger.min.js（静的同梱）
+    └── images/                # common/ pc/ sp/（PNG・JPG・SVG ＋ WebP）
 ```
 
 ## SCSS ガイドライン概要
@@ -76,11 +93,7 @@ dist/                       # ビルド出力
 
 ## 使用ライブラリ
 
-- [GSAP + ScrollTrigger](https://gsap.com/) — アニメーション（ローカル同梱）
-- [browser-sync](https://browsersync.io/) — 開発サーバー
-- [sass](https://sass-lang.com/) — SCSS コンパイル
-- [chokidar-cli](https://github.com/open-cli-tools/chokidar-cli) — ファイル監視
-- [concurrently](https://github.com/open-cli-tools/concurrently) — 並列プロセス実行
+- [GSAP + ScrollTrigger](https://gsap.com/) — アニメーション（`assets/js/app/` に静的同梱）
 
 ## 主な機能
 
