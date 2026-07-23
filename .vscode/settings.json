@@ -1,0 +1,22 @@
+{
+  // Live Sass Compile 設定（Node 不使用）
+  // assets/scss/*.scss（パーシャル _*.scss を除く style.scss / fv.scss）を
+  // assets/css/ に expanded と compressed の2形式で出力する。
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/assets/css"
+    },
+    {
+      "format": "compressed",
+      "extensionName": ".min.css",
+      "savePath": "/assets/css"
+    }
+  ],
+  "liveSassCompile.settings.generateMap": false,
+  "liveSassCompile.settings.excludeList": [
+    "**/node_modules/**",
+    ".vscode/**"
+  ]
+}

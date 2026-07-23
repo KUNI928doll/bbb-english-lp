@@ -1,17 +1,12 @@
-
-node_modules/
-dist
-
-*.zip
-server*.json*
+*.zipserver*.json*
 .ftppass
 sftp.json
 .VSCodeCounter
 .DS_Store
 
-# SCSSソースフォルダに紛れ込むコンパイル済みCSS（ビルド出力はdistのみ）
-src/sass/**/*.css
-src/sass/**/*.css.map
+# Live Sass Compile / dart-sass の中間出力（.map は非生成方針）
+assets/scss/**/*.css
+assets/scss/**/*.css.map
 
 # 内部作業用ドキュメント（共有対象外）
 CLAUDE.md
